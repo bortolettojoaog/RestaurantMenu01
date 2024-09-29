@@ -33,4 +33,9 @@ public class FoodController {
         repository.save(foodData);
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping
+    public List<FoodResponseDTO> getAll() {
+        return repository.findAll().stream().map(FoodResponseDTO::new).toList();
+    }
 }
