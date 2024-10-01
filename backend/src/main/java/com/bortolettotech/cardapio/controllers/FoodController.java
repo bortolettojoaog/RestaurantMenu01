@@ -38,4 +38,12 @@ public class FoodController {
     public List<FoodResponseDTO> getAll() {
         return repository.findAll().stream().map(FoodResponseDTO::new).toList();
     }
+
+
+    @GetMapping("/{uuid}")
+    public FoodResponseDTO getOne(@PathVariable @Valid UUID uuid) {
+        return repository.findById(uuid)
+                .map(FoodResponseDTO::new)
+                .orElse(null);
+    }
 }
