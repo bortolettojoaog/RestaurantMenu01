@@ -46,4 +46,10 @@ public class FoodController {
                 .map(FoodResponseDTO::new)
                 .orElse(null);
     }
+
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public ResponseEntity<String> handleMethodArgumentTypeMismatch(MethodArgumentTypeMismatchException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body("UUID inválido: " + ex.getValue());
+    }
 }
